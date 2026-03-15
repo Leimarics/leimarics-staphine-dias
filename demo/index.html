@@ -379,14 +379,22 @@
   @media (max-width: 900px) {
     nav { padding: 1.2rem 1.5rem; }
     .nav-links { display: none; }
-    section { padding: 5rem 1.5rem; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .about-img-wrap { aspect-ratio: 4/3; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .gallery-item:first-child { grid-column: span 2; }
-    .form-row { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.2rem; }
+    .section-title { font-size: 2.2rem; } /* Shrinks giant headers */
+    .hero-name { font-size: 3.5rem; }
+    .hero-stats { gap: 1.2rem; }
+    .hero-stat-num { font-size: 1.8rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-img-wrap { aspect-ratio: 4/5; }
+    .brands-grid { gap: 1.2rem; } /* Fixes the giant gaps between brands */
+    .brand-pill { font-size: 0.65rem; padding: 0.4rem 0.8rem; }
+    .gallery-tabs { flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 2rem 0; }
+    .gallery-tab { padding: 0.5rem 1rem; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:first-child { grid-column: span 2; aspect-ratio: 16/9; }
+    .form-row { grid-template-columns: 1fr; gap: 1.25rem; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
-    .brands { padding: 3rem 1.5rem; }
+    .brands { padding: 3rem 1.2rem; }
   }
 </style>
 </head>
