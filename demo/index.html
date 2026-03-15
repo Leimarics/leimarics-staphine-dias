@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staphine Dias — Anchor & Emcee | Goa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C4A35A;
+    --gold-light: #E8D5A3;
+    --gold-dark: #8B6E35;
+    --bg: #080808;
+    --bg-card: #111111;
+    --bg-section: #0d0d0d;
+    --text: #F0EDE8;
+    --muted: #888888;
+    --border: rgba(196,163,90,0.2);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+    transition: background 0.3s;
+  }
+  nav.scrolled { background: rgba(8,8,8,0.98); border-bottom: 1px solid var(--border); }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 400; letter-spacing: 0.1em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.85rem;
+    letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: transparent; border: 1px solid var(--gold); color: var(--gold);
+    padding: 0.6rem 1.5rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s; text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--bg); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; text-align: center;
+    padding: 2rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(196,163,90,0.08) 0%, transparent 65%);
+  }
+  .hero-lines {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(196,163,90,0.5) 61px);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 2rem; opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 300; line-height: 1.0;
+    color: var(--text); margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+  }
+  .hero-name em { font-style: italic; color: var(--gold); }
+  .hero-tagline {
+    font-size: 1rem; color: var(--muted); font-weight: 300;
+    letter-spacing: 0.05em; margin-bottom: 3rem;
+    opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+  }
+  .hero-stats {
+    display: flex; gap: 3rem; justify-content: center; margin-bottom: 3.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+    flex-wrap: wrap;
+  }
+  .hero-stat-num {
+    display: block; font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 300; color: var(--gold); line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s 1.1s forwards;
+  }
+  .btn-primary {
+    padding: 1rem 2.5rem; background: var(--gold); color: var(--bg);
+    font-family: 'DM Sans', sans-serif; font-size: 0.8rem;
+    letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
+    border: none; cursor: pointer; text-decoration: none; display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-secondary {
+    padding: 1rem 2.5rem; background: transparent; color: var(--text);
+    border: 1px solid rgba(240,237,232,0.3); font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    opacity: 0; animation: fadeUp 0.8s 1.3s forwards;
+  }
+  .hero-scroll span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  .scroll-line {
+    width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 7rem 4rem; position: relative; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem; display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.15;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .divider {
+    width: 60px; height: 1px; background: var(--gold);
+    margin: 2rem 0;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* ABOUT */
+  .about { background: var(--bg-section); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .about-img-wrap {
+    position: relative; aspect-ratio: 3/4;
+    background: var(--bg-card); overflow: hidden;
+  }
+  .about-img-frame {
+    position: absolute; inset: -1px;
+    border: 1px solid var(--border);
+  }
+  .about-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+    flex-direction: column; gap: 1rem;
+  }
+  .about-img-placeholder .icon {
+    width: 80px; height: 80px; opacity: 0.15;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C4A35A'%3E%3Cpath d='M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .about-img-placeholder span { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.1em; }
+  .about-accent {
+    position: absolute; bottom: -1.5rem; right: -1.5rem; z-index: -1;
+    width: 70%; height: 70%; border: 1px solid var(--border);
+  }
+  .about-text p { color: var(--muted); font-weight: 300; margin-bottom: 1.2rem; line-height: 1.9; }
+  .about-highlight {
+    border-left: 2px solid var(--gold); padding-left: 1.5rem; margin: 2rem 0;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+    font-style: italic; color: var(--gold-light); line-height: 1.6; font-weight: 300;
+  }
+  .about-badges { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+  .badge {
+    padding: 0.4rem 1rem; border: 1px solid var(--border);
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5px;
+    margin-top: 4rem; background: var(--border);
+  }
+  .service-card {
+    background: var(--bg-card); padding: 2.5rem 2rem;
+    position: relative; overflow: hidden; transition: background 0.4s;
+  }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-card:hover { background: #161616; }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 0.9rem;
+    color: var(--gold-dark); letter-spacing: 0.1em; margin-bottom: 1.5rem;
+    display: block;
+  }
+  .service-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400;
+    color: var(--text); margin-bottom: 1rem; line-height: 1.2;
+  }
+  .service-card p { font-size: 0.875rem; color: var(--muted); font-weight: 300; line-height: 1.8; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .service-tag {
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold-dark); border: 1px solid rgba(196,163,90,0.15); padding: 0.2rem 0.6rem;
+  }
+
+  /* GALLERY */
+  .gallery { background: var(--bg-section); }
+  .gallery-tabs { display: flex; gap: 0; margin: 3rem 0; border-bottom: 1px solid var(--border); }
+  .gallery-tab {
+    padding: 0.75rem 1.5rem; background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); position: relative;
+    transition: color 0.3s; border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .gallery-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .gallery-tab:hover { color: var(--text); }
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto; gap: 4px;
+  }
+  .gallery-item {
+    background: var(--bg-card); aspect-ratio: 1;
+    overflow: hidden; position: relative; cursor: pointer;
+  }
+  .gallery-item:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+  .gallery-placeholder {
+    width: 100%; height: 100%; min-height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0.5rem; color: var(--muted);
+    background: linear-gradient(135deg, #111 0%, #181818 100%);
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: all 0.4s;
+  }
+  .gallery-placeholder:hover { background: linear-gradient(135deg, #1a1a1a 0%, #202020 100%); }
+  .gallery-placeholder .play-icon {
+    width: 40px; height: 40px; border: 1.5px solid rgba(196,163,90,0.4);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  .gallery-placeholder .event-label { color: var(--gold-dark); }
+
+  /* TESTIMONIALS */
+  .testimonials-wrap { margin-top: 4rem; }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5px; background: var(--border); }
+  .testimonial-card {
+    background: var(--bg-card); padding: 2.5rem;
+    border-bottom: 2px solid transparent; transition: border-color 0.3s;
+  }
+  .testimonial-card:hover { border-bottom-color: var(--gold); }
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+    font-style: italic; color: var(--text); line-height: 1.8; margin-bottom: 1.5rem; font-weight: 300;
+  }
+  .testimonial-quote::before { content: '"'; color: var(--gold); font-size: 2rem; line-height: 0; vertical-align: -0.5rem; margin-right: 0.2rem; }
+  .testimonial-author { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+  .testimonial-role { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; }
+  .stars { color: var(--gold); font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+
+  /* CONTACT */
+  .contact { background: var(--bg-section); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; margin-top: 4rem; }
+  .contact-info h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  .contact-info p { color: var(--muted); font-weight: 300; line-height: 1.9; margin-bottom: 2rem; }
+  .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+  .contact-detail-icon {
+    width: 36px; height: 36px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-detail-text { font-size: 0.875rem; color: var(--muted); }
+  .contact-detail-text strong { color: var(--text); display: block; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.08em; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text); padding: 0.9rem 1rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; font-weight: 300; outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group select { cursor: pointer; }
+  .form-group select option { background: #111; }
+  .form-group textarea { resize: none; height: 120px; }
+  .form-submit {
+    width: 100%; padding: 1.1rem; background: var(--gold); color: var(--bg);
+    border: none; font-family: 'DM Sans', sans-serif; font-size: 0.8rem;
+    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+    cursor: pointer; transition: background 0.3s; margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* CLIENTS / BRANDS */
+  .brands { padding: 4rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .brands-label {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
+    text-align: center; margin-bottom: 2rem;
+  }
+  .brands-grid {
+    display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; align-items: center;
+  }
+  .brand-pill {
+    padding: 0.5rem 1.2rem; border: 1px solid var(--border);
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); white-space: nowrap;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); font-weight: 400;
+  }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.05em; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-credit { font-size: 0.7rem; color: rgba(136,136,136,0.5); letter-spacing: 0.05em; }
+  .footer-credit a { color: var(--gold-dark); text-decoration: none; }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    width: 56px; height: 56px; background: #25D366; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.3); cursor: pointer;
+    text-decoration: none; transition: transform 0.3s;
+  }
+  .wa-float:hover { transform: scale(1.08); }
+  .wa-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-img-wrap { aspect-ratio: 4/3; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:first-child { grid-column: span 2; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .brands { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Staphine Dias</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Goa · India · And Beyond</p>
+    <h1 class="hero-name">Staphine<br><em>Dias</em></h1>
+    <p class="hero-tagline">Anchor · Emcee · Event Host &nbsp;|&nbsp; Weddings · Corporate · Social Events</p>
+    <div class="hero-stats">
+      <div>
+        <span class="hero-stat-num" data-count="800">0</span>
+        <span class="hero-stat-label">Events Hosted</span>
+      </div>
+      <div>
+        <span class="hero-stat-num" data-count="7">0</span>
+        <span class="hero-stat-label">Years Experience</span>
+      </div>
+      <div>
+        <span class="hero-stat-num" data-count="15">0</span>
+        <span class="hero-stat-label">Cities</span>
+      </div>
+      <div>
+        <span class="hero-stat-num" data-count="50">0</span>
+        <span class="hero-stat-label">Corporate Brands</span>
+      </div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Book for Your Event</a>
+      <a href="#portfolio" class="btn-secondary">View My Work</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands fade-in">
+  <p class="brands-label">Trusted by leading brands</p>
+  <div class="brands-grid">
+    <span class="brand-pill">Delta Airlines</span>
+    <span class="brand-pill">Asian Paints</span>
+    <span class="brand-pill">Marriott Hotels</span>
+    <span class="brand-pill">SmartCare</span>
+    <span class="brand-pill">Poppy Inspire</span>
+    <span class="brand-pill">RE Events</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div style="position: relative;">
+        <div class="about-img-wrap fade-in">
+          <div class="about-img-placeholder">
+            <div class="icon"></div>
+            <span>Portrait Photo</span>
+          </div>
+          <div class="about-img-frame"></div>
+        </div>
+        <div class="about-accent"></div>
+      </div>
+      <div class="about-text fade-in">
+        <span class="section-label">About Me</span>
+        <h2 class="section-title">The Voice Behind<br>Every <em>Memorable</em> Event</h2>
+        <div class="divider"></div>
+        <p>Hi, I'm Staphine — a professional Anchor & Emcee based in the heart of Goa, bringing warmth, energy, and elegance to events across India and beyond.</p>
+        <p>With over 7 years of experience and 800+ happy clients, I specialize in making every event feel uniquely curated — from intimate sangeet nights to large-scale corporate conferences and high-energy social events.</p>
+        <div class="about-highlight">
+          "The best anchor isn't just someone who talks — it's someone who makes every person in the room feel like they belong."
+        </div>
+        <p>Fluent in English, Hindi, and Konkani, I adapt seamlessly to any audience, culture, and event format. Goa's vibrant spirit is in my DNA, and I bring that infectious energy to every stage I step on.</p>
+        <div class="about-badges">
+          <span class="badge">Bilingual Host</span>
+          <span class="badge">Corporate Specialist</span>
+          <span class="badge">Wedding Expert</span>
+          <span class="badge">Goa Based</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="padding: 7rem 4rem;">
+  <div class="container">
+    <span class="section-label fade-in">What I Do</span>
+    <h2 class="section-title fade-in">Services Built for<br>Every <em>Occasion</em></h2>
+    <div class="services-grid fade-in">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <span class="service-icon">💍</span>
+        <h3>Weddings &amp; Sangeet</h3>
+        <p>From mehendi ceremonies to reception galas — I craft the perfect flow that keeps your guests engaged and your family smiling.</p>
+        <div class="service-tags">
+          <span class="service-tag">Sangeet Nights</span>
+          <span class="service-tag">Receptions</span>
+          <span class="service-tag">Mehendi</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <span class="service-icon">🏢</span>
+        <h3>Corporate Events</h3>
+        <p>Product launches, leadership summits, award nights, and conferences — I bring professional polish and audience engagement to every corporate setting.</p>
+        <div class="service-tags">
+          <span class="service-tag">Conferences</span>
+          <span class="service-tag">Award Nights</span>
+          <span class="service-tag">Product Launches</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <span class="service-icon">🎉</span>
+        <h3>Social &amp; Ticketed Events</h3>
+        <p>Concerts, Holi parties, carnivals, and cultural shows — I keep the crowd moving, the energy high, and the momentum rolling all night.</p>
+        <div class="service-tags">
+          <span class="service-tag">Holi Events</span>
+          <span class="service-tag">Concerts</span>
+          <span class="service-tag">Carnivals</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <span class="service-icon">🌟</span>
+        <h3>Private &amp; Custom Events</h3>
+        <p>Birthday bashes, family reunions, private parties — no event is too intimate or too large. Each experience is tailored to your vision.</p>
+        <div class="service-tags">
+          <span class="service-tag">Birthdays</span>
+          <span class="service-tag">Private Parties</span>
+          <span class="service-tag">Custom</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="portfolio">
+  <div class="container">
+    <span class="section-label fade-in">Portfolio</span>
+    <h2 class="section-title fade-in">Events That<br>Made <em>History</em></h2>
+    <div class="gallery-tabs fade-in">
+      <button class="gallery-tab active">All Events</button>
+      <button class="gallery-tab">Weddings</button>
+      <button class="gallery-tab">Corporate</button>
+      <button class="gallery-tab">Social</button>
+    </div>
+    <div class="gallery-grid fade-in">
+      <div class="gallery-item">
+        <div class="gallery-placeholder" style="min-height: 400px;">
+          <div class="play-icon">▶</div>
+          <span class="event-label">Rangholic 2.0 · Holi 2026</span>
+          <span>Biggest Holi Party in Goa</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <div class="play-icon">▶</div>
+          <span class="event-label">Delta Airlines</span>
+          <span>Corporate Conference</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <span class="event-label">Sangeet Night</span>
+          <span>Sonal & Nitish</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <div class="play-icon">▶</div>
+          <span class="event-label">Gala Carnival 2026</span>
+          <span>Young Boys of Navelim</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <span class="event-label">Goa Carnival 2026</span>
+          <span>Cultural Event</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <div class="play-icon">▶</div>
+          <span class="event-label">Asian Paints</span>
+          <span>Leadership Summit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="padding: 7rem 4rem;">
+  <div class="container">
+    <span class="section-label fade-in">Kind Words</span>
+    <h2 class="section-title fade-in">What Clients<br><em>Say</em></h2>
+    <div class="testimonials-wrap fade-in">
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★ ★ ★ ★ ★</div>
+          <p class="testimonial-quote">We definitely recommend her for anyone doing events anywhere in the world. She elevated our event from just another evening to an experience our guests still talk about.</p>
+          <p class="testimonial-author">A Happy Client</p>
+          <p class="testimonial-role">Corporate Event, Goa</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★ ★ ★ ★ ★</div>
+          <p class="testimonial-quote">Staphine has an incredible ability to read the room. The energy she brought to our sangeet kept everyone — from the grandparents to the kids — completely engaged.</p>
+          <p class="testimonial-author">Wedding Family</p>
+          <p class="testimonial-role">Destination Wedding, Goa</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★ ★ ★ ★ ★</div>
+          <p class="testimonial-quote">Our corporate conference needed someone who could handle 300+ professionals with poise and wit. Staphine delivered beyond expectations. Will book again without question.</p>
+          <p class="testimonial-author">HR Manager</p>
+          <p class="testimonial-role">Corporate Conference, Mumbai</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <span class="section-label fade-in">Let's Work Together</span>
+    <h2 class="section-title fade-in">Book Staphine<br>for Your <em>Event</em></h2>
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <h3>Let's make your event unforgettable.</h3>
+        <p>Whether it's a grand destination wedding, a high-stakes corporate conference, or a party that needs to go all night — I'm here to make it happen. Reach out and let's talk about your vision.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            <strong>Location</strong>
+            Cuncolim, Goa, India — Available Nationwide
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📧</div>
+          <div class="contact-detail-text">
+            <strong>Email</strong>
+            staphinedias@gmail.com
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📸</div>
+          <div class="contact-detail-text">
+            <strong>Instagram</strong>
+            @staphinedias
+          </div>
+        </div>
+        <div style="margin-top: 2.5rem;">
+          <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Staphine!%20I%20found%20you%20through%20your%20website%20and%20I%20would%20like%20to%20book%20you%20for%20my%20event." class="btn-primary" style="display: inline-block; text-decoration: none;">
+            💬 &nbsp;WhatsApp Directly
+          </a>
+        </div>
+      </div>
+      <div class="fade-in">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" placeholder="Rahul Sharma" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="rahul@company.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>WhatsApp Number</label>
+              <input type="tel" placeholder="+91 98XXXXXXXX">
+            </div>
+            <div class="form-group">
+              <label>Event Date</label>
+              <input type="date">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Event Type</label>
+            <select required>
+              <option value="" disabled selected>Select event type</option>
+              <option>Wedding / Sangeet</option>
+              <option>Corporate Conference</option>
+              <option>Award Night / Gala</option>
+              <option>Social / Ticketed Event</option>
+              <option>Private Party</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Event City</label>
+              <input type="text" placeholder="Goa, Mumbai, Delhi...">
+            </div>
+            <div class="form-group">
+              <label>Expected Guests</label>
+              <select>
+                <option value="" disabled selected>Approx. size</option>
+                <option>Under 50</option>
+                <option>50–150</option>
+                <option>150–500</option>
+                <option>500+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tell Me About Your Event</label>
+            <textarea placeholder="Share the vision — theme, special requirements, anything that makes your event unique..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Booking Enquiry →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Staphine Dias</div>
+  <ul class="footer-links">
+    <li><a href="https://instagram.com/staphinedias" target="_blank">Instagram</a></li>
+    <li><a href="#contact">Book Now</a></li>
+  </ul>
+  <p class="footer-credit">© 2026 Staphine Dias &nbsp;|&nbsp; Website by <a href="#">Leimarics</a></p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Staphine!%20I%20found%20you%20through%20your%20website." target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.gallery-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  function animateCount(el, target, suffix) {
+    let current = 0;
+    const step = target / 50;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.floor(current) + (suffix || '+');
+      if (current >= target) clearInterval(timer);
+    }, 30);
+  }
+
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('[data-count]').forEach(el => {
+          animateCount(el, parseInt(el.dataset.count), '+');
+        });
+        heroObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  const statsEl = document.querySelector('.hero-stats');
+  if (statsEl) heroObserver.observe(statsEl);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Enquiry Sent ✓';
+    btn.style.background = '#2a7a4a';
+    btn.style.color = 'white';
+    setTimeout(() => {
+      btn.textContent = 'Send Booking Enquiry →';
+      btn.style.background = '';
+      btn.style.color = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
